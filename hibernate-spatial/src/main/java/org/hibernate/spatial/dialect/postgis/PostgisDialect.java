@@ -303,7 +303,7 @@ public class PostgisDialect extends PostgreSQLDialect implements SpatialDialect 
 		switch (aggregation) {
 			case SpatialAggregate.EXTENT:
 				StringBuilder stbuf = new StringBuilder();
-				stbuf.append("extent(").append(columnName).append(")");
+				stbuf.append("ST_Extent(").append(columnName).append(")");
 				return stbuf.toString();
 			default:
 				throw new IllegalArgumentException(
