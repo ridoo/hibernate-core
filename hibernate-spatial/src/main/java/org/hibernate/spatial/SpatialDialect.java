@@ -22,6 +22,8 @@ package org.hibernate.spatial;
 
 import java.io.Serializable;
 
+import org.hibernate.spatial.GeometryType.Type;
+
 /**
  * Describes the features of a spatially enabled dialect.
  *
@@ -87,6 +89,17 @@ public interface SpatialDialect extends Serializable {
 	 * @return
 	 */
 	public String getIsEmptySQL(String columnName, boolean isEmpty);
+	
+        /**
+        * Returns the SQL fragment when parsing an <code>GeometryTypeExpression</code>.
+        * 
+        * @param columnName the geometry column to test against
+        * @return
+        */
+        public String getGeometryTypeSQL(String columnName);
+        
+        String getGeometryQueryType(Type geometryType);
+
 
 	/**
 	 * Returns true if this <code>SpatialDialect</code> supports a specific filtering function.
@@ -102,5 +115,7 @@ public interface SpatialDialect extends Serializable {
 	 * @return true if this <code>SpatialDialect</code> supports the spatial function specified by the function parameter.
 	 */
 	public boolean supports(SpatialFunction function);
+
+    
 
 }

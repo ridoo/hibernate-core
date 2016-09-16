@@ -29,6 +29,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.dialect.function.SQLFunctionTemplate;
 import org.hibernate.dialect.function.StandardSQLFunction;
 import org.hibernate.spatial.*;
+import org.hibernate.spatial.GeometryType.Type;
 import org.hibernate.type.descriptor.sql.SqlTypeDescriptor;
 import org.hibernate.type.BinaryType;
 import org.hibernate.type.DoubleType;
@@ -248,5 +249,15 @@ public class DB2SpatialDialect extends DB2Dialect implements SpatialDialect{
 	public boolean supportsFiltering() {
 		return false;
 	}
+    @Override
+    public String getGeometryTypeSQL(String columnName) {
+        // TODO
+        return "";
+    }
+    @Override
+    public String getGeometryQueryType(Type geometryType) {
+        // TODO
+        return "";
+    }
 
 }

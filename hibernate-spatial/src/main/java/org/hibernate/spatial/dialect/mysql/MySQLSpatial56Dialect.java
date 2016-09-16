@@ -136,5 +136,15 @@ public class MySQLSpatial56Dialect extends MySQL5Dialect implements SpatialDiale
 		return (getFunctions().get(function.toString()) != null);
 	}
 
+    @Override
+    public String getGeometryTypeSQL(String columnName) {
+        return dialectDelegate.getGeometryTypeSQL(columnName);
+    }
+    
+    @Override
+    public String getGeometryQueryType(GeometryType.Type geometryType) {
+        return dialectDelegate.getGeometryQueryType(geometryType);
+    }
+
 }
 

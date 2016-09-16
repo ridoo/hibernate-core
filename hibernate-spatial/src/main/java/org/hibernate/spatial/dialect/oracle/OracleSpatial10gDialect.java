@@ -537,5 +537,17 @@ public class OracleSpatial10gDialect extends Oracle10gDialect implements
 		return (getFunctions().get(function.toString()) != null);
 	}
 
+    @Override
+    public String getGeometryTypeSQL(String columnName) {
+        // TODO
+        return "";
+    }
+
+    @Override
+    public String getGeometryQueryType(org.hibernate.spatial.GeometryType.Type geometryType) {
+        // TODO
+        return "";
+    }
+
 
 }

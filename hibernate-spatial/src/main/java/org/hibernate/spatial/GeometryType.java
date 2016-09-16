@@ -31,6 +31,14 @@ import org.hibernate.type.AbstractSingleColumnStandardBasicType;
 public class GeometryType extends AbstractSingleColumnStandardBasicType<Geometry> {
 
 	public static final GeometryType INSTANCE = new GeometryType();
+	
+	public static final String POINT = "Point";
+	public static final String PLYGON = "Polygon";
+	public static final String MULTIPOLYGON = "MultiPolygon";
+	public static final String LINESTRING = "LineString";
+	public static final String MULTILINESTRING = "MultiLineString";
+	public static final String MULTIPOINT = "MultiPoint";
+	public static final String GEOMETRYCOLLECTIOPN = "GeometryCollection";
 
 	@Override
 	public String[] getRegistrationKeys() {
@@ -55,5 +63,9 @@ public class GeometryType extends AbstractSingleColumnStandardBasicType<Geometry
 	public String getName() {
 		return "geometry";
 	}
-
+	
+	
+	public enum Type {
+	    Point, Polygon, MultiPolygon, LineString, MultiLineString, MultiPoint, GeometryCollection;
+	}
 }

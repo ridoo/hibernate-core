@@ -320,4 +320,14 @@ public class PostgisDialect extends PostgreSQLDialect implements SpatialDialect 
 	public boolean supports(SpatialFunction function) {
 		return (getFunctions().get(function.toString()) != null);
 	}
+
+    @Override
+    public String getGeometryTypeSQL(String columnName) {
+        return "( ST_GeometryType(" + columnName + ") = ?)";
+    }
+    
+    @Override
+    public String getGeometryQueryType(GeometryType.Type geometryType) {
+        return "ST_" + geometryType.name();
+    }
 }

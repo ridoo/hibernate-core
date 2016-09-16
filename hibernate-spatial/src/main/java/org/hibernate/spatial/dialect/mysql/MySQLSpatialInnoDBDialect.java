@@ -23,11 +23,13 @@ package org.hibernate.spatial.dialect.mysql;
 import org.hibernate.HibernateException;
 import org.hibernate.dialect.MySQLInnoDBDialect;
 import org.hibernate.dialect.function.StandardSQLFunction;
+import org.hibernate.spatial.GeometryType;
 import org.hibernate.spatial.SpatialDialect;
 import org.hibernate.spatial.SpatialFunction;
 import org.hibernate.type.descriptor.sql.SqlTypeDescriptor;
 
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -110,5 +112,15 @@ public class MySQLSpatialInnoDBDialect extends MySQLInnoDBDialect implements Spa
 	public boolean supports(SpatialFunction function) {
 		return dialectDelegate.supports(function);
 	}
+
+    @Override
+    public String getGeometryTypeSQL(String columnName) {
+        return dialectDelegate.getGeometryTypeSQL(columnName);
+    }
+    
+    @Override
+    public String getGeometryQueryType(GeometryType.Type geometryType) {
+        return dialectDelegate.getGeometryQueryType(geometryType).toUpperCase(Locale.ROOT);
+    }
 
 }

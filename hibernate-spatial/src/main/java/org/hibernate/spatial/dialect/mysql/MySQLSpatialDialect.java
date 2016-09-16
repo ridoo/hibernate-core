@@ -198,4 +198,14 @@ public class MySQLSpatialDialect extends MySQLDialect implements SpatialDialect 
 		return (getFunctions().get(function.toString()) != null);
 	}
 
+    @Override
+    public String getGeometryTypeSQL(String columnName) {
+        return "( ST_GeometryType(" + columnName + ") = ?)";
+    }
+    
+    @Override
+    public String getGeometryQueryType(GeometryType.Type geometryType) {
+        return geometryType.name();
+    }
+
 }

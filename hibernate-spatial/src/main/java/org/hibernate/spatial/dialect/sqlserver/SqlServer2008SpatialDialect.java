@@ -26,6 +26,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.dialect.SQLServer2008Dialect;
 import org.hibernate.dialect.function.SQLFunctionTemplate;
 import org.hibernate.spatial.*;
+import org.hibernate.spatial.GeometryType.Type;
 import org.hibernate.type.StandardBasicTypes;
 import org.hibernate.type.descriptor.sql.SqlTypeDescriptor;
 
@@ -176,4 +177,14 @@ public class SqlServer2008SpatialDialect extends SQLServer2008Dialect implements
 	public boolean supports(SpatialFunction function) {
 		return (getFunctions().get(function.toString()) != null);
 	}
+
+    @Override
+    public String getGeometryTypeSQL(String columnName) {
+        return "(" + columnName + ".STGeometryType() = ?)";
+    }
+
+    @Override
+    public String getGeometryQueryType(Type geometryType) {
+        return geometryType.name();
+    }
 }

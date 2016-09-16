@@ -23,6 +23,7 @@ package org.hibernate.spatial.criterion;
 import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.Geometry;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.spatial.GeometryType;
 import org.hibernate.spatial.SpatialRelation;
 
 /**
@@ -127,6 +128,10 @@ public class SpatialRestrictions {
 	public static Criterion isNotEmpty(String propertyName) {
 		return new IsEmptyExpression(propertyName, false);
 	}
+	
+        public static Criterion geometryType(String propertyName, GeometryType.Type value) {
+            return new GeometryTypeFilterExpression(propertyName, value);
+        }
 
 	public static Criterion spatialRestriction(int relation,
 											   String propertyName, Geometry value) {

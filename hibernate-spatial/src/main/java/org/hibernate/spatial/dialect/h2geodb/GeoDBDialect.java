@@ -21,10 +21,13 @@
 
 package org.hibernate.spatial.dialect.h2geodb;
 
+import java.util.Locale;
+
 import org.hibernate.HibernateException;
 import org.hibernate.dialect.H2Dialect;
 import org.hibernate.dialect.function.StandardSQLFunction;
 import org.hibernate.spatial.*;
+import org.hibernate.spatial.GeometryType.Type;
 import org.hibernate.type.StandardBasicTypes;
 import org.hibernate.type.descriptor.sql.SqlTypeDescriptor;
 
@@ -230,5 +233,15 @@ public class GeoDBDialect extends H2Dialect implements SpatialDialect {
 		if (function == SpatialFunction.difference) return false;
 		return (getFunctions().get(function.toString()) != null);
 	}
+
+    @Override
+    public String getGeometryTypeSQL(String columnName) {
+        return "( GeometryType(" + columnName + ") = ?)";
+    }
+
+    @Override
+    public String getGeometryQueryType(Type geometryType) {
+        return geometryType.name().toUpperCase(Locale.ROOT);
+    }
 
 }
