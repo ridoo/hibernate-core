@@ -200,7 +200,7 @@ public class MySQLSpatialDialect extends MySQLDialect implements SpatialDialect 
 
     @Override
     public String getGeometryTypeSQL(String columnName) {
-        return "( ST_GeometryType(" + columnName + ") = ?)";
+        return "( GeometryType(" + columnName + ") = ?)";
     }
     
     @Override
