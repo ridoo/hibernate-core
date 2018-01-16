@@ -13,6 +13,7 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.engine.spi.TypedValue;
 import org.hibernate.spatial.SpatialDialect;
 import org.hibernate.spatial.SpatialFunction;
+import org.hibernate.type.StandardBasicTypes;
 
 public class GeometryTypeFilterExpression implements Criterion {
 
@@ -40,6 +41,8 @@ public class GeometryTypeFilterExpression implements Criterion {
 
 	@Override
 	public TypedValue[] getTypedValues(Criteria criteria, CriteriaQuery criteriaQuery) throws HibernateException {
-		return new TypedValue[] { criteriaQuery.getTypedValue( criteria, propertyName, geometryType ) };
+		return new TypedValue[] {
+			new TypedValue( StandardBasicTypes.STRING, geometryType )
+		};
 	}
 }
