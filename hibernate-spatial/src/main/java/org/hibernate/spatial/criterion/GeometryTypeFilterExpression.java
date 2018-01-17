@@ -6,6 +6,7 @@
  */
 package org.hibernate.spatial.criterion;
 
+import org.geolatte.geom.GeometryType;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.CriteriaQuery;
@@ -18,9 +19,9 @@ import org.hibernate.type.StandardBasicTypes;
 public class GeometryTypeFilterExpression implements Criterion {
 
 	private final String propertyName;
-	private final String geometryType;
+	private final GeometryType geometryType;
 
-	public GeometryTypeFilterExpression(String propertyName, String geometryType) {
+	public GeometryTypeFilterExpression(String propertyName, GeometryType geometryType) {
 		this.propertyName = propertyName;
 		this.geometryType = geometryType;
 	}
@@ -41,8 +42,9 @@ public class GeometryTypeFilterExpression implements Criterion {
 
 	@Override
 	public TypedValue[] getTypedValues(Criteria criteria, CriteriaQuery criteriaQuery) throws HibernateException {
+		String typeString = getSpatialDialect(criteriaQuery).getGeometryTypeValue(this.geometryType);
 		return new TypedValue[] {
-			new TypedValue( StandardBasicTypes.STRING, geometryType )
+			new TypedValue( StandardBasicTypes.STRING, typeString )
 		};
 	}
 }

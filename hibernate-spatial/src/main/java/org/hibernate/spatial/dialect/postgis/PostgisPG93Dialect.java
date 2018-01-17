@@ -7,6 +7,7 @@
 package org.hibernate.spatial.dialect.postgis;
 
 import java.util.Map;
+import org.geolatte.geom.GeometryType;
 import org.hibernate.boot.model.TypeContributions;
 import org.hibernate.dialect.PostgreSQL93Dialect;
 import org.hibernate.dialect.function.SQLFunction;
@@ -143,7 +144,19 @@ public class PostgisPG93Dialect extends PostgreSQL93Dialect implements SpatialDi
 	public String getGeometryTypeSQL(String columnName) {
 		return support.getGeometryTypeSQL( columnName );
 	}
-	
+
+	/**
+	 * Returns the geometry type name specific to the actual dialect.
+	 *
+	 * @param geometryType the geometry type
+	 *
+	 * @return the geometry type name
+	 */
+	@Override
+	public String getGeometryTypeValue(GeometryType geometryType) {
+		return support.getGeometryTypeValue(geometryType);
+	}
+
 	/**
 	 * Returns true if this <code>SpatialDialect</code> supports a specific filtering function.
 	 * <p> This is intended to signal DB-support for fast window queries, or MBR-overlap queries.</p>

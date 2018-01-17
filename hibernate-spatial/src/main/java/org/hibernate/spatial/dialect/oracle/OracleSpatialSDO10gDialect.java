@@ -9,6 +9,7 @@ package org.hibernate.spatial.dialect.oracle;
 import java.io.Serializable;
 import java.sql.Types;
 import java.util.Map;
+import org.geolatte.geom.GeometryType;
 import org.hibernate.boot.model.TypeContributions;
 import org.hibernate.dialect.Oracle10gDialect;
 import org.hibernate.dialect.function.SQLFunction;
@@ -91,6 +92,11 @@ public class OracleSpatialSDO10gDialect extends Oracle10gDialect implements Spat
 	@Override
 	public String getGeometryTypeSQL(String columnName) {
 		return sdoSupport.getGeometryTypeSQL( columnName );
+	}
+
+	@Override
+	public String getGeometryTypeValue(GeometryType geometryType) {
+		return sdoSupport.getGeometryTypeValue(geometryType);
 	}
 
 	@Override

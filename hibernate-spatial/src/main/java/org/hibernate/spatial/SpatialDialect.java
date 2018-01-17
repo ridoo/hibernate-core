@@ -7,6 +7,7 @@
 package org.hibernate.spatial;
 
 import java.io.Serializable;
+import org.geolatte.geom.GeometryType;
 
 /**
  * Describes the features of a spatially enabled dialect.
@@ -89,6 +90,15 @@ public interface SpatialDialect extends Serializable {
 	 * @return The SQL fragment for the geometrytype function
 	 */
 	public String getGeometryTypeSQL(String columnName);
+
+	/**
+	 * Returns the geometry type name specific to the actual dialect.
+	 *
+	 * @param geometryType the geometry type
+	 * 
+	 * @return the geometry type name
+	 */
+	public String getGeometryTypeValue(GeometryType geometryType);
 
 	/**
 	 * Returns true if this <code>SpatialDialect</code> supports a specific filtering function.

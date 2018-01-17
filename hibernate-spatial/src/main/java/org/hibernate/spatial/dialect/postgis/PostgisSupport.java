@@ -7,6 +7,7 @@
 package org.hibernate.spatial.dialect.postgis;
 
 import java.io.Serializable;
+import org.geolatte.geom.GeometryType;
 import org.hibernate.boot.model.TypeContributions;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.spatial.GeolatteGeometryType;
@@ -153,6 +154,11 @@ public class PostgisSupport implements SpatialDialect, Serializable {
 	@Override
 	public String getGeometryTypeSQL(String columnName) {
 		return "( ST_GeometryType(" + columnName + ") = ?)";
+	}
+
+	@Override
+	public String getGeometryTypeValue(GeometryType geometryType) {
+		return "ST_" + geometryType.getCamelCased();
 	}
 
 	/**

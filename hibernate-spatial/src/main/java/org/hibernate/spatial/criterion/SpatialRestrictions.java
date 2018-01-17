@@ -8,6 +8,7 @@ package org.hibernate.spatial.criterion;
 
 import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.Geometry;
+import org.geolatte.geom.GeometryType;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.spatial.SpatialRelation;
 
@@ -257,7 +258,7 @@ public class SpatialRestrictions {
 	 *
 	 * @see GeometryTypeFilterExpression
 	 */
-	public static Criterion geometryType(String propertyName, String filterValue) {
+	public static Criterion geometryType(String propertyName, GeometryType filterValue) {
 		return new GeometryTypeFilterExpression(propertyName, filterValue);
 	}
 

@@ -7,6 +7,7 @@
 package org.hibernate.spatial.dialect.mysql;
 
 import java.util.Map;
+import org.geolatte.geom.GeometryType;
 import org.hibernate.boot.model.TypeContributions;
 import org.hibernate.dialect.MySQLDialect;
 import org.hibernate.dialect.function.SQLFunction;
@@ -104,6 +105,11 @@ public class MySQLSpatialDialect extends MySQLDialect implements SpatialDialect 
 	@Override
 	public String getGeometryTypeSQL(String columnName) {
 		return "( ST_GeometryType(" + columnName + ") = ?)";
+	}
+
+	@Override
+	public String getGeometryTypeValue(GeometryType geometryType) {
+		return geometryType.name();
 	}
 
 	@Override

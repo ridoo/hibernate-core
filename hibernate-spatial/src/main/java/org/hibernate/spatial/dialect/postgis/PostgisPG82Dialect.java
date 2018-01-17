@@ -7,6 +7,7 @@
 package org.hibernate.spatial.dialect.postgis;
 
 import java.util.Map;
+import org.geolatte.geom.GeometryType;
 import org.hibernate.boot.model.TypeContributions;
 import org.hibernate.dialect.PostgreSQL82Dialect;
 import org.hibernate.dialect.function.SQLFunction;
@@ -76,6 +77,11 @@ public class PostgisPG82Dialect extends PostgreSQL82Dialect implements SpatialDi
 	@Override
 	public String getSpatialFilterExpression(String columnName) {
 		return support.getSpatialFilterExpression( columnName );
+	}
+
+	@Override
+	public String getGeometryTypeValue(GeometryType geometryType) {
+		return support.getGeometryTypeValue(geometryType);
 	}
 
 	@Override

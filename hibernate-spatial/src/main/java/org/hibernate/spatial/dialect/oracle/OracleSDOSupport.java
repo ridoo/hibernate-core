@@ -7,6 +7,7 @@
 package org.hibernate.spatial.dialect.oracle;
 
 import java.io.Serializable;
+import org.geolatte.geom.GeometryType;
 import org.geolatte.geom.codec.db.oracle.ConnectionFinder;
 import org.geolatte.geom.codec.db.oracle.OracleJDBCTypeFactory;
 import org.hibernate.boot.model.TypeContributions;
@@ -312,6 +313,10 @@ class OracleSDOSupport implements SpatialDialect, Serializable {
 		return String.format( " (MDSYS.ST_GEOMETRY(%s).GET_GTYPE() = ?)", columnName );
 	}
 
+	@Override
+	public String getGeometryTypeValue(GeometryType geometryType) {
+		return geometryType.name();
+	}
 
 	/**
 	 * Returns true if this <code>SpatialDialect</code> supports a specific filtering function.

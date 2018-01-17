@@ -7,6 +7,7 @@
 
 package org.hibernate.spatial.dialect.h2geodb;
 
+import org.geolatte.geom.GeometryType;
 import org.hibernate.boot.model.TypeContributions;
 import org.hibernate.dialect.H2Dialect;
 import org.hibernate.dialect.function.StandardSQLFunction;
@@ -116,6 +117,11 @@ public class GeoDBDialect extends H2Dialect implements SpatialDialect {
 	@Override
 	public String getGeometryTypeSQL(String columnName) {
 		return "( GeometryType(" + columnName + ") = ?)";
+	}
+
+	@Override
+	public String getGeometryTypeValue(GeometryType geometryType) {
+		return geometryType.name();
 	}
 
 	@Override

@@ -6,6 +6,7 @@
  */
 package org.hibernate.spatial.dialect.hana;
 
+import org.geolatte.geom.GeometryType;
 import org.hibernate.boot.model.TypeContributions;
 import org.hibernate.dialect.HANAColumnStoreDialect;
 import org.hibernate.engine.config.spi.ConfigurationService;
@@ -164,6 +165,11 @@ public class HANASpatialDialect extends HANAColumnStoreDialect implements Spatia
 	@Override
 	public String getGeometryTypeSQL(String columnName) {
 		return columnName + ".ST_GeometryType() = ?";
+	}
+
+	@Override
+	public String getGeometryTypeValue(GeometryType geometryType) {
+		return "ST_" + geometryType.getCamelCased();
 	}
 
 	@Override
